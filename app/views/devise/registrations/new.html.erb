@@ -1,0 +1,30 @@
+<div class="flex flex-col items-center justify-center h-full bg-gray-100" data-controller="sign-up">
+  <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Choose Your Role</h2>
+
+  <div class="flex items-center justify-center bg-gray-100">
+    <%= form_with url: new_user_session_path, method: :get do %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 py-10 hover:bg-blue-500 hover:text-white ">
+          <label for="role_coach" class="block text-center p-6 cursor-pointer rounded-lg" data-action="click->sign-up#selectRole">
+            <%= radio_button_tag :role, 'coach', false, id: 'role_coach', class: 'hidden' %>
+            <h3 class="text-xl font-semibold">Coach</h3>
+            <p class="mt-2">Become a coach and manage your team or clients.</p>
+          </label>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 py-10 hover:bg-blue-500 hover:text-white">
+          <label for="role_employee" class="block text-center p-6 cursor-pointer rounded-lg" data-action="click->sign-up#selectRole">
+            <%= radio_button_tag :role, 'employee', false, id: 'role_employee', class: 'hidden' %>
+            <h3 class="text-xl font-semibold">Employee</h3>
+            <p class="mt-2">Join as an employee and work with your team.</p>
+          </label>
+        </div>
+      </div>
+      
+      <div class="w-full flex justify-end">
+        <%= submit_tag "Continue", class: "mt-6 py-2 px-4 bg-blue-500 text-white font-bold rounded-lg hover:cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

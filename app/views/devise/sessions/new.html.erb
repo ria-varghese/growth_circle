@@ -1,9 +1,15 @@
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
+<div class="min-h-screen flex items-center justify-center">
   <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+    <% if flash[:alert] %>
+      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md shadow-sm">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
       <div>
         <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
         <%= f.email_field :email, autofocus: true, class: "w-full mt-1 p-2 border border-gray-300 rounded-md" %>

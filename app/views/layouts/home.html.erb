@@ -16,6 +16,14 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl p-4 mt-4 rounded-lg bg-green-100 text-green-800 shadow-lg z-50">
+        <div class="flex items-center">
+          <span class="font-semibold mr-2">Success:</span>
+          <p class="text-sm"><%= flash[:notice] %></p>
+        </div>
+      </div>
+    <% end %>
     <div class="flex flex-col h-screen">
       <header class="bg-blue-600 text-white h-16 flex items-center">
         <div class="container mx-auto flex justify-between items-center px-4">
@@ -25,7 +33,11 @@
           <nav>
             <ul class="flex space-x-6">
               <li><a href="/about" class="hover:text-gray-200">About</a></li>
-              <li><a href="/users/sign_in" class="hover:text-gray-200">Login</a></li>
+              <% if current_user %>
+                  <li><%= link_to 'Sign Out', destroy_user_session_path, data: { "turbo-method": :delete }, class: "hover:text-gray-200" %></li>
+              <% else %>
+                  <li><%= link_to 'Login', user_session_path, method: :delete, class: "hover:text-gray-200" %></li>
+              <% end %>
             </ul>
           </nav>
         </div>

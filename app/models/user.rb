@@ -27,8 +27,8 @@ class User < ApplicationRecord
       field :password_confirmation
       field :role, :enum do
         enum do
-          array = User.roles.map do |k, _|
-            [ I18n.t("user.roles.#{k}"), k ]
+          array = User.roles.map do |k, v|
+            [ I18n.t("user.roles.#{k}"), v ]
           end
           Hash[array]
         end

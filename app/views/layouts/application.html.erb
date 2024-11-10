@@ -16,6 +16,14 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl p-4 mt-4 rounded-lg bg-green-100 text-green-800 shadow-lg z-50">
+        <div class="flex items-center">
+          <span class="font-semibold mr-2">Success:</span>
+          <p class="text-sm"><%= flash[:notice] %></p>
+        </div>
+      </div>
+    <% end %>
     <main>
       <%= yield %>
     </main>

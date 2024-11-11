@@ -43,6 +43,9 @@ gem "rails_admin", "~> 3.2", ">= 3.2.1"
 # For authorization
 gem "pundit", "~> 2.4"
 
+# Jquery
+gem "jquery-rails"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

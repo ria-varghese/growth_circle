@@ -13,4 +13,20 @@ export default class extends Controller {
       $(this).closest("div.role-option").first().removeClass("bg-white").addClass("bg-blue-500 text-white");
     });
   }
+
+  submitRole(event){
+    event.preventDefault();
+    const selectedRole = $('input[name="role"]:checked').val();
+
+    if (selectedRole == "coach"){
+      window.location.href = "/coaches/new"
+    }
+    else if(selectedRole == "employee"){
+      window.location.href = "/employees/new"
+      
+    }
+    else {
+        alert("Please choose a role.");
+    }
+  }
 }

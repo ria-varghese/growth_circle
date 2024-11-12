@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
-  has_many :employees, class_name: "User", dependent: :destroy
+  has_many :employees, -> { where(role: :employee) }, class_name: "User", dependent: :destroy
+  has_and_belongs_to_many :coaching_programs, dependent: :nullify
 
   validates :name, presence: true
   validates :slug, uniqueness: true
@@ -8,12 +9,10 @@ class Company < ApplicationRecord
   before_create :set_slug
 
   rails_admin do
-   list do
-      field :name
-      field :landing_page_link do
-        label "URL"
-        formatted_value do
-          bindings[:object].landing_page_link
+    list do
+      field :name do
+        pretty_value do
+          bindings[:view].render(partial: "companies/landing_page_url", locals: { company: bindings[:object] })
         end
       end
       field :description
@@ -29,7 +28,7 @@ class Company < ApplicationRecord
       field :description
       field :employees do
         pretty_value do
-          # bindings[:view].render(partial: "company/employees_list", locals: { employees: value })
+          bindings[:view].render(partial: "companies/employees_list", locals: { employees: value })
         end
       end
     end
@@ -44,10 +43,6 @@ class Company < ApplicationRecord
         end
       end
     end
-  end
-
-  def landing_page_link
-    "<a href='/companies/#{slug}/programs' target='_blank'>Landing Page</a>".html_safe
   end
 
   private

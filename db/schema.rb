@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_11_012134) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_12_081506) do
+  create_table "coaches_coaching_programs", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "coach_id", null: false
+    t.bigint "coaching_program_id", null: false
+  end
+
+  create_table "coaching_programs", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "company_id"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_coaching_programs_on_company_id"
+  end
+
+  create_table "coaching_programs_companies", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "coaching_program_id", null: false
+  end
+
   create_table "companies", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"

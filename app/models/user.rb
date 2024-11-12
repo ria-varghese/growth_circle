@@ -8,10 +8,13 @@ class User < ApplicationRecord
 
   belongs_to :company, optional: true
 
+  has_and_belongs_to_many :coaching_programs, join_table: "coaches_coaching_programs", foreign_key: "coach_id"
+
   validates :name, presence: true
   validates :role, presence: true
   validate :company_assignment
 
+  scope :active, -> { where(active: true) }
   scope :admins, -> { where(role: :admin) }
   scope :coaches, -> { where(role: :coach) }
   scope :employees, -> { where(role: :employee) }
@@ -33,11 +36,7 @@ class User < ApplicationRecord
         required true
       end
       field :company
-      field :role, :enum do
-        enum do
-          User.roles.transform_keys { |k| I18n.t("user.roles.#{k}") }
-        end
-      end
+      field :role
       field :password do
         visible do
           bindings[:object].new_record? || bindings[:object].admin?

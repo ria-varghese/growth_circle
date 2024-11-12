@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_12_105707) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_12_111523) do
   create_table "coaches_coaching_programs", id: false, charset: "utf8mb4", force: :cascade do |t|
     t.bigint "coach_id", null: false
     t.bigint "coaching_program_id", null: false
@@ -56,6 +56,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_12_105707) do
     t.bigint "coaching_program_id"
     t.text "coaching_requirements"
     t.bigint "coach_id"
+    t.string "phone_number"
+    t.string "gender"
+    t.string "nickname"
     t.index ["coaching_program_id"], name: "index_users_on_coaching_program_id"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -39,4 +39,8 @@ class CoachingProgram < ApplicationRecord
       end
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "active", "company_id", "created_at", "description", "id", "id_value", "name", "updated_at" ]
+  end
 end

@@ -42,4 +42,12 @@ class Employee < User
   def enrolled_in?(program)
     coaching_program&.id == program.id
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "active", "coach_id", "coaching_program_id", "coaching_requirements", "company_id", "created_at", "email", "encrypted_password", "gender", "id", "id_value", "name", "nickname", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "coach", "coaching_program", "company" ]
+  end
 end

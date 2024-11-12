@@ -1,0 +1,49 @@
+<div class="container mx-auto p-6 space-y-20after">
+  <div>
+    <h1 class="text-3xl font-semibold text-gray-800">Your Dashboard</h1>
+
+    <div class="mt-6">
+      <h2 class="text-xl font-medium text-gray-800">Coaching Sessions</h2>
+
+      <table class="min-w-full mt-4">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="px-4 py-2 text-left text-sm text-gray-600">Name</th>
+            <th class="px-4 py-2 text-left text-sm text-gray-600"><%= sort_link(@q, "company_name", "Company Name") %></th>
+            <th class="px-4 py-2 text-left text-sm text-gray-600"><%= sort_link(@q, "coaching_program_name", "Program") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @enrollments.each do |session| %>
+              <tr>
+                  <td class="px-4 py-2"><%= session.name %></td>
+                  <td class="px-4 py-2"><%= session.company.name %></td>
+                  <td class="px-4 py-2"><%= session.coaching_program.name %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-xl font-medium text-gray-800">Your Companies</h2>
+
+    <% if @companies.any? %>
+      <table class="min-w-full mt-4">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="px-4 py-2 text-left text-sm text-gray-600">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @companies.each do |company| %>
+              <tr>
+                  <td class="px-4 py-2"><%= company.name %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

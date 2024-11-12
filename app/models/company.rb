@@ -66,4 +66,8 @@ class Company < ApplicationRecord
       errors.add(:slug, "is immutable!")
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "created_at", "description", "domain", "id", "id_value", "name", "slug", "updated_at" ]
+  end
 end

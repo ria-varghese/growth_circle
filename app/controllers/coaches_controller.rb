@@ -9,10 +9,17 @@ class CoachesController < ApplicationController
 
     if @coach.save
       sign_in(@coach)
-      redirect_to root_path, notice: "Welcome, #{@coach.name}! Your account has been created.", status: 200
+      redirect_to root_pathN
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @coach = Coach.find(params[:id])
+    @q = @coach.enrollments.ransack(params[:q])
+    @enrollments = @q.result(distinct: true)
+    @companies = @coach.enrollments.includes(:company).map(&:company).uniq
   end
 
   private

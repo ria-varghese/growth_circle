@@ -71,6 +71,9 @@ group :development, :test do
 
   # For dummy data
   gem "faker"
+
+  # For specs
+  gem "rspec-rails", "~> 5.0"
 end
 
 group :development do

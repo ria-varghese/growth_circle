@@ -6,13 +6,8 @@ class User < ApplicationRecord
 
   enum role: { admin: 0, coach: 1, employee: 2 }
 
-  belongs_to :company, optional: true
-
-  has_and_belongs_to_many :coaching_programs, join_table: "coaches_coaching_programs", foreign_key: "coach_id"
-
   validates :name, presence: true
   validates :role, presence: true
-  validate :company_assignment
 
   scope :active, -> { where(active: true) }
   scope :admins, -> { where(role: :admin) }
@@ -61,13 +56,5 @@ class User < ApplicationRecord
 
   def password_required?
     new_record? ? super : false
-  end
-
-  def company_assignment
-    if employee?
-      errors.add(:company, "must be assigned to an employee") if company.blank?
-    else
-      errors.add(:company, "cannot be assigned to #{self.role} user") if company.present?
-    end
   end
 end

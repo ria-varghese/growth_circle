@@ -1,0 +1,21 @@
+<%= form_for @employee, url: wizard_path, method: :put, class: "space-y-8" do |f| %>
+  <div class="flex items-center justify-center mx-auto p-8 bg-white my-10">
+    <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-center">Step 2: Select Program and Specify Coaching Requirements</h2>
+
+      <div class="mt-6">
+        <%= f.label :coaching_program_id, "Select Coaching Program", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :coaching_program_id, options_from_collection_for_select(@programs, :id, :name), {}, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500", required: true %>
+      </div>
+
+      <div class="mt-6">
+        <%= f.label :coaching_requirements, "Specify Coaching Requirements", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_area :coaching_requirements, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500", placeholder: "Enter any specific coaching requirements or preferences." %>
+      </div>
+
+      <div class="mt-6 flex justify-end">
+        <%= f.submit "Next", class: "px-6 py-2 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md focus:outline-none" %>
+      </div>
+    </div>
+  </div>
+<% end %>

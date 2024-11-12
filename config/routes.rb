@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/about", to: "about#index"
 
   resources :coaches, only: [ :new, :create ]
+  resources :employees
 
   resources :companies, param: :slug do
     resources :programs, controller: "company_programs"

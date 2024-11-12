@@ -5,6 +5,10 @@ export default class extends Controller {
   connect() {
     console.log("connected")
   }
+  
+  initialize(){
+    this.toggleSubmitButton();
+  }
 
   selectRole() {
     $("input[name='role']").change(function() {
@@ -22,11 +26,17 @@ export default class extends Controller {
       window.location.href = "/coaches/new"
     }
     else if(selectedRole == "employee"){
-      window.location.href = "/employees/new"
+      window.location.href = "/employees/select_company"
       
     }
     else {
         alert("Please choose a role.");
     }
+  }
+
+  toggleSubmitButton() {
+    const submitButton = $("input[type='submit']")
+    const radioButtons = $("input[type='radio']")
+    submitButton.disabled = !Array.from(radioButtons).some(radio => radio.checked);
   }
 }

@@ -39,10 +39,9 @@ puts "Created Admin user"
 
 # Generating ABC Employees
 10.times do |i|
-  user = User.create!(
+  user = Employee.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email(name: "employee#{i+1}", domain: "abc.com"),
-    role: :employee,
     company: abc_company,
     password: "password",
     password_confirmation: "password"
@@ -54,10 +53,9 @@ puts "Created 10 ABC Company's employees"
 
 # Generating XYZ Employees
 10.times do |i|
-  user = User.create!(
+  user = Employee.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email(name: "employee#{i+1}", domain: "xyz.com`"),
-    role: :employee,
     company: xyz_company,
     password: "password",
     password_confirmation: "password"
@@ -69,10 +67,9 @@ puts "Created 10 XYZ Company's employees"
 
 # Generating Coaches
 10.times do |i|
-  user = User.create!(
+  user = Coach.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email(name: "coach#{i+1}"),
-    role: :coach,
     password: "password",
     password_confirmation: "password"
   )
@@ -82,7 +79,7 @@ end
 
 # Generating Coaching programs
 3.times do |i|
-  coaches = User.coaches.sample(3)
+  coaches = Coach.all.sample(3)
   coaching_program = CoachingProgram.create!(
     name: "Coaching Program #{i}",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis, sapien vitae auctor efficitur, turpis felis tincidunt neque, ac pharetra sem lectus id felis. Morbi vulputate scelerisque velit, at gravida lorem. Sed ut diam non ligula cursus fermentum vel in magna. Aenean nec tortor mollis, posuere velit non, dictum mi. Proin eget facilisis metus. Nunc condimentum urna turpis, ac egestas eros consectetur ac. Donec dapibus erat ut diam posuere, ac tincidunt elit consequat. Nullam cursus orci et orci varius tempor. Vestibulum tristique quam sapien, nec gravida felis fermentum sed. Cras auctor malesuada libero sit amet fermentum. Sed ut ante at felis sollicitudin gravida. Aliquam erat volutpat. Vivamus ac metus at ante gravida lacinia id id felis. Suspendisse in nisi in ante tincidunt vestibulum eget a ipsum. Aenean auctor mollis lectus sed tincidunt. In id magna metus. Etiam fringilla velit vitae erat laoreet, et faucibus magna viverra. Sed non nisi quis sem posuere laoreet. Aenean a metus ut dolor tincidunt laoreet eget vel sem. Pellentesque nec mi tempor, tempor odio a, luctus orci.",

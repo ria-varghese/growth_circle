@@ -21,7 +21,7 @@ class ApplicationPolicy
     end
 
     def show_in_app?
-      user.admin?
+      false
     end
 
     def dashboard?

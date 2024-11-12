@@ -14,13 +14,15 @@ CoachingProgram.destroy_all
 
 abc_company = Company.create!(
   name: "ABC Company",
-  description: "ABC Company is a dynamic and forward-thinking organization specializing in innovative solutions across multiple industries. With a commitment to excellence and a focus on customer satisfaction, ABC Company provides a wide range of products and services designed to meet the diverse needs of its clients. From cutting-edge technology solutions to high-quality consumer goods, ABC Company consistently delivers value, reliability, and expertise. Our mission is to empower businesses and individuals alike with tools that drive growth, efficiency, and success in an ever-evolving global marketplace."
+  description: "ABC Company is a dynamic and forward-thinking organization specializing in innovative solutions across multiple industries. With a commitment to excellence and a focus on customer satisfaction, ABC Company provides a wide range of products and services designed to meet the diverse needs of its clients. From cutting-edge technology solutions to high-quality consumer goods, ABC Company consistently delivers value, reliability, and expertise. Our mission is to empower businesses and individuals alike with tools that drive growth, efficiency, and success in an ever-evolving global marketplace.",
+  domain: "abc.com"
 )
 puts "Created ABC Company"
 
 xyz_company = Company.create!(
   name: "XYZ Company",
-  description: "XYZ Company is a dynamic and forward-thinking organization specializing in innovative solutions across multiple industries. With a commitment to excellence and a focus on customer satisfaction, XYZ Company provides a wide range of products and services designed to meet the diverse needs of its clients. From cutting-edge technology solutions to high-quality consumer goods, XYZ Company consistently delivers value, reliability, and expertise. Our mission is to empower businesses and individuals alike with tools that drive growth, efficiency, and success in an ever-evolving global marketplace."
+  description: "XYZ Company is a dynamic and forward-thinking organization specializing in innovative solutions across multiple industries. With a commitment to excellence and a focus on customer satisfaction, XYZ Company provides a wide range of products and services designed to meet the diverse needs of its clients. From cutting-edge technology solutions to high-quality consumer goods, XYZ Company consistently delivers value, reliability, and expertise. Our mission is to empower businesses and individuals alike with tools that drive growth, efficiency, and success in an ever-evolving global marketplace.",
+  domain: "xyz.com"
   )
 puts "Created XYZ Company"
 
@@ -39,7 +41,7 @@ puts "Created Admin user"
 10.times do |i|
   user = User.create!(
     name: Faker::Name.name,
-    email: Faker::Internet.email(name: "employee#{i+1}"),
+    email: Faker::Internet.email(name: "employee#{i+1}", domain: "abc.com"),
     role: :employee,
     company: abc_company,
     password: "password",
@@ -54,7 +56,7 @@ puts "Created 10 ABC Company's employees"
 10.times do |i|
   user = User.create!(
     name: Faker::Name.name,
-    email: Faker::Internet.email(name: "employee#{i+1}"),
+    email: Faker::Internet.email(name: "employee#{i+1}", domain: "xyz.com`"),
     role: :employee,
     company: xyz_company,
     password: "password",

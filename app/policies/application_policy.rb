@@ -13,7 +13,7 @@ class ApplicationPolicy
     end
 
     def destroy?
-      false
+      user.admin?
     end
 
     def history?

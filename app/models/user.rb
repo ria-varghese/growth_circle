@@ -6,32 +6,69 @@ class User < ApplicationRecord
 
   enum role: { admin: 0, coach: 1, employee: 2 }
 
+  belongs_to :company, optional: true
+
   validates :name, presence: true
   validates :role, presence: true
-  validates :password_confirmation, presence: true
+  validate :company_assignment
+
+  scope :admins, -> { where(role: :admin) }
+  scope :coaches, -> { where(role: :coach) }
+  scope :employees, -> { where(role: :employee) }
 
   rails_admin do
     list do
       field :name
       field :email
+      field :company
       field :role
       field :active
+
+      scopes [ :all, :admin, :coaches, :employees ]
     end
 
     edit do
       field :name
-      field :email
-      field :password
-      field :password_confirmation
+      field :email do
+        required true
+      end
+      field :company
       field :role, :enum do
         enum do
-          array = User.roles.map do |k, v|
-            [ I18n.t("user.roles.#{k}"), v ]
-          end
-          Hash[array]
+          User.roles.transform_keys { |k| I18n.t("user.roles.#{k}") }
+        end
+      end
+      field :password do
+        visible do
+          bindings[:object].new_record? || bindings[:object].admin?
+        end
+        required do
+          bindings[:object].new_record?
+        end
+      end
+      field :password_confirmation do
+        visible do
+          bindings[:object].new_record? || bindings[:object].admin?
+        end
+        required do
+          bindings[:object].new_record? ? true : false
         end
       end
       field :active
+    end
+  end
+
+  private
+
+  def password_required?
+    new_record? ? super : false
+  end
+
+  def company_assignment
+    if employee?
+      errors.add(:company, "must be assigned to an employee") if company.blank?
+    else
+      errors.add(:company, "cannot be assigned to #{self.role} user") if company.present?
     end
   end
 end

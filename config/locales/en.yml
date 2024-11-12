@@ -33,3 +33,5 @@ en:
       admin: "Admin"
       coach: "Coach"
       employee: "Employee"
+  authorization:
+    denied: "You are not authorized to view this page"

@@ -18,7 +18,6 @@ class User < ApplicationRecord
     list do
       field :name
       field :email
-      field :company
       field :role
       field :active
 
@@ -30,31 +29,10 @@ class User < ApplicationRecord
       field :email do
         required true
       end
-      field :company
       field :role
-      field :password do
-        visible do
-          bindings[:object].new_record? || bindings[:object].admin?
-        end
-        required do
-          bindings[:object].new_record?
-        end
-      end
-      field :password_confirmation do
-        visible do
-          bindings[:object].new_record? || bindings[:object].admin?
-        end
-        required do
-          bindings[:object].new_record? ? true : false
-        end
-      end
+      field :password
+      field :password_confirmation
       field :active
     end
-  end
-
-  private
-
-  def password_required?
-    new_record? ? super : false
   end
 end

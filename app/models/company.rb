@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :employees, -> { where(role: :employee) }, class_name: "User", dependent: :destroy
+  has_many :employees
   has_and_belongs_to_many :coaching_programs, dependent: :nullify
 
   validates :name, presence: true
@@ -16,6 +16,7 @@ class Company < ApplicationRecord
         end
       end
       field :description
+      field :coaching_programs
       field :employees do
         pretty_value do
           value.count
@@ -26,6 +27,7 @@ class Company < ApplicationRecord
     show do
       field :name
       field :description
+      field :coaching_programs
       field :employees do
         pretty_value do
           bindings[:view].render(partial: "companies/employees_list", locals: { employees: value })
@@ -36,12 +38,8 @@ class Company < ApplicationRecord
     edit do
       field :name
       field :description
-      field :employees do
-        associated_collection_scope do
-          company = bindings[:object]
-          Proc.new { |scope| scope.where(role: :employee, active: true, company: company) }
-        end
-      end
+      field :coaching_programs
+      field :employees
     end
   end
 

@@ -18,7 +18,6 @@ module ApiExceptions
         render_error(exception, :internal_server_error)
 
       when ActiveRecord::RecordNotFound
-        # render_error(t("not_found", entity: exception.model), :not_found)
         render file: "public/404.html", status: :not_found, layout: false
 
       when ActiveRecord::RecordNotUnique

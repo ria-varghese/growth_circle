@@ -26,7 +26,7 @@ export default class extends Controller {
       window.location.href = "/coaches/new"
     }
     else if(selectedRole == "employee"){
-      window.location.href = "/employees/select_company"
+      window.location.href = "/employees/new"
       
     }
     else {

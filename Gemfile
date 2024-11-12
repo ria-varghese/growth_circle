@@ -62,6 +62,9 @@ group :development, :test do
   # For debugging
   gem "pry"
   gem "pry-rails"
+
+  # For dummy data
+  gem "faker"
 end
 
 group :development do

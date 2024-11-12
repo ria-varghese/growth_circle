@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## GrowthCircle by Ria Varghese
 
-Things you may want to cover:
+### Ruby version 
+3.3.6
 
-* Ruby version
+### Rails version
+7.2.2
 
-* System dependencies
+### Database
+MySQL
 
-* Configuration
+## Setup
+### Setup dependencies 
+```bash
+bundle install
+```
 
-* Database creation
+### Setup database
+```bash
+bin/rails db:create
 
-* Database initialization
+bin/rails db:migrate
 
-* How to run the test suite
+bin/rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+### Startup
+```bash
+./bin/dev
+```

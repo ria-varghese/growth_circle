@@ -37,7 +37,8 @@ module ApiExceptions
     end
 
     def handle_authorization_error
-      render_error(t("authorization.denied"), :forbidden)
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to "/users/sign_in" and return
     end
 
     def handle_generic_exception(exception, status = :internal_server_error)

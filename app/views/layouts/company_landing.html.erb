@@ -35,6 +35,15 @@
               <%= @company.name %>
             </a>
           </div>
+          <nav>
+            <ul class="flex space-x-6">
+              <li><%= current_user&.email %></li>
+              <% if current_user %>
+                  <%= link_to "Enroll Now", employee_path(id: "select_program"), class: "hover:text-gray-200" %>
+                  <li><%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "hover:text-gray-200" %></li>
+              <% end %>
+            </ul>
+          </nav>
         </div>
       </header>
 

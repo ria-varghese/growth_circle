@@ -15,14 +15,9 @@
           <h3 class="text-xl font-semibold text-gray-800"><%= coaching_program.name %></h3>
           <p class="text-gray-600 mt-2"><%= truncate(coaching_program.description, length: 300) %></p>
           <div class="flex justify-between items-center">
-              <div class="flex space-x-4 w-full">
-                <a href=<%=company_program_path(@company.slug, coaching_program)%> class="text-green-600 py-2 rounded hover:underline hover:cursor-pointer mt-4">
-                  Know More
-                </a>
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4 whitespace-nowrap">
-                Select Program
-              </button>
+              <a href=<%=company_program_path(@company.slug, coaching_program)%> class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4 whitespace-nowrap">
+                Know More
+              </a>
           </div>
         </div>
       <% end %>

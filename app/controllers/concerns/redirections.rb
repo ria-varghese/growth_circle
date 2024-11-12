@@ -6,6 +6,9 @@ module Redirections
         flash[:notice] = "Welcome back, #{current_user.name}!"
         if current_user.admin?
           rails_admin_path
+        elsif current_user.employee?
+          employee = Employee.find(current_user.id)
+          company_programs_path(employee.company.slug)
         else
           root_path
         end

@@ -15,10 +15,15 @@ Rails.application.routes.draw do
 
   get "/about", to: "about#index"
 
-  resources :coaches, only: [ :new, :create ]
+  resources :coaches, only: [ :new, :create, :show ]
   resources :employees
 
   resources :companies, param: :slug do
-    resources :programs, controller: "company_programs"
+    resources :programs, controller: "company_programs" do
+      member do
+        delete :unenroll
+      end
+      resources :employee_sessions
+    end
   end
 end

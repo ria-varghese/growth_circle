@@ -2,7 +2,13 @@
   <div class="container mx-auto">
     <h1 class="text-4xl font-bold mb-4">Welcome to Growth Circle</h1>
     <p class="text-xl mb-8">Empowering you to reach your goals with a circle of support.</p>
-    <a href="/users/sign_up" class="bg-yellow-500 hover:bg-yellow-400 text-black py-2 px-6 rounded-full text-lg">Get Started</a>
+    <% if @employee %>
+      <a href=<%= company_program_path(@employee.company.slug, @employee.coaching_program) %> class="bg-yellow-500 hover:bg-yellow-400 text-black py-2 px-6 rounded-full text-lg">View your program</a>
+    <% elsif @coach %>
+      <a href=<%= coach_path(@coach) %> class="bg-yellow-500 hover:bg-yellow-400 text-black py-2 px-6 rounded-full text-lg">Dashboard</a>
+    <% else %>
+      <a href="/users/sign_up" class="bg-yellow-500 hover:bg-yellow-400 text-black py-2 px-6 rounded-full text-lg">Get Started</a>
+    <% end %>
   </div>
 </section>
 

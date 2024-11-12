@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center mx-auto p-8 bg-white my-10">
     <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
       <progress value="2" max="3" class="mb-4 w-full h-3 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-blue-500"></progress>
-      <h2 class="text-2xl font-semibold text-center">Step : Select Your Program</h2>
+      <h2 class="text-2xl font-semibold text-center">Select Your Program</h2>
 
       <div class="mt-6">
         <%= f.select :coaching_program_id, options_from_collection_for_select(@programs || [], :id, :name), { prompt: "Select a Coaching Program" }, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500", required: true %>

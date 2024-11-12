@@ -30,4 +30,16 @@ class Employee < User
       field :active
     end
   end
+
+  def unenroll
+    update!(coaching_program: nil)
+  end
+
+  def enroll(program)
+    update!(coaching_program: program)
+  end
+
+  def enrolled_in?(program)
+    coaching_program&.id == program.id
+  end
 end

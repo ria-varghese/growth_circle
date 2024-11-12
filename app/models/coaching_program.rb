@@ -1,6 +1,6 @@
 class CoachingProgram < ApplicationRecord
   has_and_belongs_to_many :companies, dependent: :nullify
-  has_and_belongs_to_many :coaches, -> { where(role: :coach) }, class_name: "User", join_table: "coaches_coaching_programs", association_foreign_key: "coach_id", dependent: :nullify
+  has_and_belongs_to_many :coaches, join_table: "coaches_coaching_programs", association_foreign_key: "coach_id", dependent: :nullify
 
 
   rails_admin do

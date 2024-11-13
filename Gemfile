@@ -73,7 +73,7 @@ group :development, :test do
   gem "faker"
 
   # For specs
-  gem "rspec-rails", "~> 5.0"
+  gem "rspec-rails", "~> 7.1"
 
   # For factories
   gem "factory_bot"

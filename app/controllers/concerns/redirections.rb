@@ -4,7 +4,6 @@ module Redirections
   included do
       def after_sign_in_path_for(resource)
         flash[:notice] = "Welcome back, #{current_user.name}!"
-        binding.pry
         if current_user.admin?
           rails_admin_path
         elsif current_user.employee?
